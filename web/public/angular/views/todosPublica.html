@@ -1,0 +1,6 @@
+TODOS PUBLICA
+<ul ng-controller="TodosPublicaController as ctrl">
+    <li ng-repeat="empresa in ctrl.empresas">     
+        <a ng-href="#/negocio/{{empresa.informacion.uniquename}}">{{ empresa.nombre }}</a>
+    </li>
+</ul>

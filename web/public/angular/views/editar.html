@@ -1,0 +1,286 @@
+<script type="text/javascript" src="./../../../js/datepicker.js"></script>
+<div ng-controller="EditarFormularioController as ctrl">
+    <form name="frmEditar" ng-submit="frmEditar.$valid && ctrl.editar()">
+        <fieldset>
+            <h2>Empresa</h2> 
+            Nombre: <input type="text" name="nombre" ng-model="ctrl.nombre" 
+                           ng-minlength="10" ng-maxlength="40"
+                           ng-pattern="/^[a-zA-Záéíóú ]+$/" required/>
+            <div class="errorMessages" ng-messages="frmEditar.nombre.$error" 
+                 ng-if="!frmEditar.nombre.$pristine || frmEditar.$submitted" role="alert" >
+               <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Logotipo:
+            <br />
+            <button ngf-select="ctrl.uploadFiles($files, $invalidFiles, 'logotipo')" 
+                    accept="image/*" ngf-max-height="3000" ngf-max-width="3000" 
+                    ngf-max-size="1MB" ngf-fix-orientation="false">Select Files</button>
+            <div style="font:smaller" class="errorMessages">
+                {{ctrl.files.logotipo.name}} {{ctrl.errFiles.logotipo.name}}
+                {{ctrl.errFiles.logotipo.$error}} {{ctrl.errFiles.logotipo.$errorParam}}
+                <span class="progress" ng-show="ctrl.progress.logotipo >= 0">
+                    <div style="width:{{ctrl.progress.logotipo}}%" 
+                         ng-bind="ctrl.progress.logotipo + '%'">
+                    </div>
+                </span>
+            </div>
+            {{ctrl.errorMsg.logotipo}}
+            <div>
+                <img src="data:image/*;base64,{{ctrl.logotipo}}" width="50%"
+                     height="50%" alt="No file selected">
+            </div>
+            <br /><br />
+            Foto:
+            <button ngf-select="ctrl.uploadFiles($files, $invalidFiles, 'foto')"
+                    accept="image/*" ngf-max-height="3000" ngf-max-width="3000" 
+                    ngf-max-size="1MB" ngf-fix-orientation="false">Select Files</button>
+            <div style="font:smaller" class="errorMessages">
+                {{ctrl.files.foto.name}} {{ctrl.errFiles.foto.name}}
+                {{ctrl.errFiles.foto.$error}} {{ctrl.errFiles.foto.$errorParam}}
+                <span class="progress" ng-show="ctrl.progress.foto >= 0">
+                    <div style="width:{{ctrl.progress.foto}}%" 
+                         ng-bind="ctrl.progress.foto + '%'">
+                    </div>
+                </span>
+            </div>
+            {{ctrl.errorMsg.foto}}
+            <div>
+                <img src="data:image/*;base64,{{ctrl.foto}}" width="50%"
+                     height="50%" alt="embedded folder icon">
+            </div>
+            <br />   
+            Texto introductorio: 
+            <textarea rows="4" cols="50" ng-model="ctrl.textoIntro"
+                      name="textoIntro" ng-maxlength="180"></textarea>
+            <div class="errorMessages" ng-messages="frmEditar.textoIntro.$error" 
+                 ng-if="!frmEditar.textoIntro.$pristine || frmEditar.$submitted"
+                 role="alert" >
+               <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br /><br />
+        </fieldset>
+        <br /><br />
+        <fieldset>
+            <h5>Direccion</h5>
+            <br />
+            Numero: <input type="text" ng-model="ctrl.numero" name="numero" 
+                           ng-maxlength="5"/>
+            <div class="errorMessages" ng-messages="frmEditar.numero.$error" 
+                 ng-if="!frmEditar.numero.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Numero interior: <input type="text" ng-model="ctrl.numeroInt"
+                                    name="numeroInt" ng-maxlength="5"/>
+            <div class="errorMessages" ng-messages="frmEditar.numeroInt.$error" 
+                 ng-if="!frmEditar.numeroInt.$pristine || frmEditar.$submitted"
+                 role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Calle: <input type="text" ng-model="ctrl.calle" name="calle"
+                          ng-maxlength="40" required/>
+            <div class="errorMessages" ng-messages="frmEditar.calle.$error" 
+                 ng-if="!frmEditar.calle.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Colonia: <input type="text" ng-model="ctrl.colonia" name="colonia" 
+                            ng-pattern="/^[a-zA-Záéíóú ]+$/" ng-maxlength="30"
+                            required/>
+            <div class="errorMessages" ng-messages="frmEditar.colonia.$error" 
+                 ng-if="!frmEditar.colonia.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            C.P. : <input type="text" ng-model="ctrl.cp" name="cp" 
+                          ng-pattern="/^[0-9]+$/" ng-minlength="5" 
+                          ng-maxlength="5" required/>
+            <div class="errorMessages" ng-messages="frmEditar.cp.$error" 
+                 ng-if="!frmEditar.cp.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Municipio: <input type="text" ng-model="ctrl.municipio" ng-maxlength="20"
+                              ng-minlength="5" name="municipio"
+                              ng-pattern="/^[a-zA-Záéíóú ]+$/" required/>
+            <div class="errorMessages" ng-messages="frmEditar.municipio.$error" 
+                 ng-if="!frmEditar.municipio.$pristine || frmEditar.$submitted"
+                 role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Estado: <input type="text" ng-model="ctrl.estado" 
+                           ng-pattern="/^[a-zA-Záéíóú ]+$/" name="estado"
+                           ng-maxlength="20" ng-minlength="5" required/>
+            <div class="errorMessages" ng-messages="frmEditar.estado.$error" 
+                 ng-if="!frmEditar.estado.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Mapa: 
+            <div id="googleMap" style="width:500px;height:380px;"></div>
+            <a class="btn btn-lg btn-warning" href ng-click="ctrl.borrarMarker()"
+               role="button">Borrar marker</a>
+        </fieldset>
+        <br />
+        <fieldset>
+            <h5>Rubro</h5>
+            <br />
+            Nombre: <input type="text" ng-model="ctrl.rubro" ng-minlength="5" 
+                           ng-maxlength="40" ng-pattern="/^[a-zA-Záéíóú ]+$/" 
+                           name="rubro" required/>
+            <div class="errorMessages" ng-messages="frmEditar.rubro.$error" 
+                 ng-if="!frmEditar.rubro.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+        </fieldset>
+        <br /><br />
+        Descripcion: <textarea rows="4" cols="50" ng-model="ctrl.descripcion"
+                               name="descripcion" ng-maxlength="180"></textarea>
+        <div class="errorMessages" ng-messages="frmEditar.descripcion.$error" 
+             ng-if="!frmEditar.descripcion.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br />
+        Horario: <input type="text" ng-model="ctrl.horario" name="horario"
+                        ng-maxlength="100" required/>
+        <div class="errorMessages" ng-messages="frmEditar.horario.$error" 
+             ng-if="!frmEditar.horario.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br />
+        Encargado: <input type="text" ng-model="ctrl.encargado" name="encargado"
+                          ng-pattern="/^[a-zA-Záéíóú ]+$/" ng-minlength="10"
+                           ng-maxlength="40" required/>
+        <div class="errorMessages" ng-messages="frmEditar.encargado.$error"
+             ng-if="!frmEditar.encargado.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br />
+        Telefono: <input type="text" ng-model="ctrl.tel" name="tel" 
+                         ng-minlength="5" ng-maxlength="15" 
+                         ng-pattern="/^[0-9]+$/" required/>
+        <div class="errorMessages" ng-messages="frmEditar.tel.$error" 
+             ng-if="!frmEditar.tel.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br />
+        Facebook: <input type="text" ng-model="ctrl.face" ng-maxlength="20"
+                         name="face"/>
+        <div class="errorMessages" ng-messages="frmEditar.face.$error" 
+             ng-if="!frmEditar.face.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br />
+        Email: <input type="email" ng-model="ctrl.email" name="email" ng-pattern="/^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$/" required/>
+        <div class="errorMessages" ng-messages="frmEditar.email.$error" 
+             ng-if="!frmEditar.email.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br /><br />
+        <fieldset>
+            <h5>Producto</h5>
+            (Máximo 10 productos)
+            Producto : {{ctrl.producto}}
+            <br />
+            Titulo: <input type="text" ng-model="ctrl.producto.titulo" 
+                           ng-maxlength="20" name="titulo"/>
+            <div class="errorMessages" ng-messages="frmEditar.titulo.$error" 
+                 ng-if="!frmEditar.titulo.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Parrafo: 
+            <textarea rows="4" cols="50" ng-model="ctrl.producto.parrafo"
+                      ng-maxlength="40" name="parrafo"></textarea>
+            <div class="errorMessages" ng-messages="frmEditar.parrafo.$error" 
+                 ng-if="!frmEditar.parrafo.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <a class="btn btn-lg btn-warning" href 
+                ng-click="ctrl.agregarProducto()" role="button">Push</a>
+            <br />
+            Productos : {{ctrl.productos}}
+            <br />
+            Titulo del producto a remover: <input type="text" ng-model="ctrl.remover"/>
+            <a class="btn btn-lg btn-warning" href 
+               ng-click="ctrl.removerProducto()" role="button">Remove</a>
+            <br />
+            Borrar todos los productos: 
+            <a class="btn btn-lg btn-warning" href ng-click="ctrl.borrarProductos()"
+               role="button">Borrar Todos los productos</a>
+        </fieldset>
+        <br /><br />
+        Nota: <textarea rows="4" cols="50" ng-model="ctrl.nota" 
+                        ng-maxlength="180" name="nota"></textarea>
+        <div class="errorMessages" ng-messages="frmEditar.nota.$error" 
+             ng-if="!frmEditar.nota.$pristine || frmEditar.$submitted" role="alert">
+            <div ng-messages-include="/error/messages.html"></div>
+        </div>
+        <br /><br />
+        <fieldset>
+            <h5>Informacion del cliente</h5>
+            <br />
+            Num. de contrato: <input type="text" ng-model="ctrl.noContrato"
+                                     ng-pattern="/^[0-9]+$/" name="noContrato" required/>
+            <div class="errorMessages" ng-messages="frmEditar.noContrato.$error" 
+                 ng-if="!frmEditar.noContrato.$pristine || frmEditar.$submitted"
+                 role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Uniquename: <input type="text" ng-model="ctrl.uniquename" 
+                                    name="uniquename" ng-pattern="/^[a-zA-Z0-9]+$/" required/>
+            <div class="errorMessages" ng-messages="frmEditar.uniquename.$error" 
+                 ng-if="!frmEditar.uniquename.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Nombre del cliente: <input type="text" ng-model="ctrl.cliente" 
+                                       ng-minlength="10" ng-maxlength="40" name="cliente"
+                                       ng-pattern="/^[a-zA-Záéíóú ]+$/" required/>
+            <div class="errorMessages" ng-messages="frmEditar.cliente.$error" 
+                 ng-if="!frmEditar.cliente.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Telefono: <input type="text" ng-model="ctrl.telCliente" name="telCliente"
+                             ng-minlength="5" ng-maxlength="15" ng-pattern="/^[0-9]+$/"
+                             required/>
+            <div class="errorMessages" ng-messages="frmEditar.telCliente.$error" 
+                 ng-if="!frmEditar.telCliente.$pristine || frmEditar.$submitted"
+                 role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />Correo: <input type="email" ng-model="ctrl.correoCliente" name="correo"
+                   ng-pattern="/^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$/"/>
+            <div class="errorMessages" ng-messages="frmEditar.correo.$error" 
+                 ng-if="!frmEditar.correo.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />
+            Fecha de Contrato: <input type="text" ng-model="ctrl.fechaContrato" 
+                                      id="fechaContrato" name="fechaContrato" required />
+            <div class="errorMessages" ng-messages="frmEditar.fechaContrato.$error" 
+                 ng-if="!frmEditar.fechaContrato.$pristine || frmEditar.$submitted"
+                 role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+            <br />    
+            Fecha de Vencimiento: <input type="text" ng-model="ctrl.fechaVencimiento" 
+                                         id="fechaVencimiento" />
+            <br />
+            Precio: <input type="text" ng-model="ctrl.pago" name="pago"
+                   ng-pattern="/^[-+]?([0-9]*\.[0-9]+|[0-9]+)$/" required/>
+            <div class="errorMessages" ng-messages="frmEditar.pago.$error" 
+                 ng-if="!frmEditar.pago.$pristine || frmEditar.$submitted" role="alert">
+                <div ng-messages-include="/error/messages.html"></div>
+            </div>
+        </fieldset>
+        
+        <button type="submit">Editar</button>
+    </form>
+    <a href="#/todos">Ir a todos</a>
+</div>

@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>Registrarse</h1>
+      <form name="frmSignup"  ng-submit="frmSignup.$valid && ctrl.signup()" 
+        ng-controller="SignupController as ctrl"
+        novalidate >
+        <div class="form-group">  
+
+        Email:<input class="form-control" type="email" name="email" ng-model="ctrl.email" 
+                      required maxlength="60" style="width:30%;"/>
+              <div class="jonasValidation" ng-messages="frmSignup.email.$error" ng-if="!frmSignup.email.$pristine || frmSignup.$submitted" role="alert" >
+                <div ng-messages-include="/error/messages.html"></div>
+              </div>
+
+        Password:<input  class="form-control" type="password" name="password" ng-model="ctrl.password" 
+                            required required maxlength="60"  style="width:30%;"/>
+            <div class="jonasValidation" ng-messages="frmSignup.password.$error" ng-if="!frmSignup.password.$pristine || frmSignup.$submitted" role="alert" >
+            <div ng-messages-include="/error/messages.html"></div>
+          </div>
+          </div>
+        <input type="submit" class="btn btn-primary btn-lg" role="button" value="Signup" />
+      </form>
+  </div>
+</div>

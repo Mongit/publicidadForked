@@ -1,0 +1,125 @@
+<div ng-controller="VerController as ctrl">
+        <fieldset>
+            <h5>Informacion del cliente</h5>
+            <br />
+            Num. de contrato: <input type="text" 
+                                     ng-model="ctrl.noContrato"/>
+            <br />
+            Uniquename: <input type="text" 
+                                            ng-model="ctrl.uniquename"/>
+            <br />
+            Nombre del cliente: <input type="text" 
+                                       ng-model="ctrl.cliente"/>
+            <br />
+            Telefono: <input type="text" ng-model="ctrl.telCliente"/>
+            <br />
+            Correo: <input type="email" 
+                           ng-model="ctrl.correoCliente" />
+            <br />
+            Fecha de Contrato: <input type="text" 
+                                      ng-model="ctrl.fechaContrato" 
+                                      id="fechaContrato" />
+            <br />    
+            Fecha de Vencimiento: <input type="text" 
+                                         ng-model="ctrl.fechaVencimiento" 
+                                         id="fechaVencimiento" />
+            <br />
+            Precio: <input type="text" ng-model="ctrl.pago"/>
+        </fieldset>
+        <fieldset>
+            <h2>Empresa</h2> 
+            Nombre: <input type="text" ng-model="ctrl.nombre"/>
+            <br />
+            Logotipo:
+            <div>
+                <img src="data:image/*;base64,{{ctrl.logotipo}}"
+                     width="50%" height="50%" alt="embedded folder icon">
+            </div>
+            <br /><br />
+            Foto:
+            <div>
+                <img src="data:image/*;base64,{{ctrl.foto}}" width="50%"
+                     height="50%" alt="embedded folder icon">
+            </div>
+            <br />   
+            Texto introductorio:
+            <textarea rows="4" cols="50" ng-model="ctrl.textoIntro">
+            </textarea>
+            <br /><br />
+        </fieldset>
+        <br /><br />
+        <fieldset>
+            <h5>Direccion</h5>
+            <br />
+            Numero: <input type="text" ng-model="ctrl.numero"/>
+            <br />
+            Numero interior: <input type="text" 
+                                    ng-model="ctrl.numeroInt"/>
+            <br />
+            Calle: <input type="text" ng-model="ctrl.calle"/>
+            <br />
+            Colonia: <input type="text" ng-model="ctrl.colonia"/>
+            <br />
+            C.P. : <input type="text" ng-model="ctrl.cp"/>
+            <br />
+            Municipio: <input type="text" ng-model="ctrl.municipio"/>
+            <br />
+            Estado: <input type="text" ng-model="ctrl.estado"/>
+            <br />
+            
+            Mapa: 
+            <div id="googleMap" style="width:500px;height:380px;"></div>
+    
+        
+        </fieldset>
+        <br />
+        <fieldset>
+            <h5>Rubro</h5>
+            <br />
+            Nombre: <input type="text" ng-model="ctrl.rubro"/>
+        </fieldset>
+        <br /><br />
+        Descripcion: <textarea rows="4" cols="50" 
+                               ng-model="ctrl.descripcion"></textarea></textarea>
+        <br />
+        Horario: <input type="text" ng-model="ctrl.horario"/>
+        <br />
+        Encargado: <input type="text" ng-model="ctrl.encargado"/>
+        <br />
+        Telefono: <input type="text" ng-model="ctrl.tel"/>
+        <br />
+        Facebook: <input type="text" ng-model="ctrl.face"/>
+        <br />
+        Email: <input type="email" ng-model="ctrl.email"/>
+        <br /><br />
+        <fieldset>
+            <h5>Producto</h5>
+            <ul>
+                <li ng-repeat="producto in ctrl.productos">
+                    {{producto.titulo}} <br>
+                    {{producto.parrafo}}
+                </li>
+            </ul>
+        </fieldset>
+        <br /><br />
+        Nota: <textarea rows="4" cols="50" ng-model="ctrl.nota"></textarea>
+        <br /><br />
+        <fieldset>
+            <h5>Contacto</h5>
+            <div ng-controller="CorreoController as ctrl">
+                <form   ng-submit="ctrl.sendEmail()">
+                    from:
+                    <input type="email" ng-model="ctrl.from">
+                    pass:
+                    <input type="password" ng-model="ctrl.pass">
+                    subject:
+                    <input type="text" ng-model="ctrl.subject">
+                    text:
+                    <input type="text" ng-model="ctrl.text">
+                    <br>
+                    <button type="submit">Send</button>
+                </form> 
+            </div>
+        </fieldset>
+        <a href="#/todos">Ir a todos</a>
+</div>

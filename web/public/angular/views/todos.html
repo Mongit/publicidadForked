@@ -1,0 +1,11 @@
+<ul ng-controller="TodosController as ctrl">
+    <a href ng-click="ctrl.logout()">Logout {{ctrl.emailUsuario}}</a>
+    <li ng-repeat="empresa in ctrl.empresas">
+        {{ empresa.nombre }} 
+        <a ng-href="#/ver/{{empresa._id}}">Ver</a>
+        <a ng-href="#/editar/{{empresa._id}}">Editar</a>
+        <a href="#" ng-click="ctrl.delete(empresa._id)">Borrar</a>
+    </li>
+</ul>
+
+<a ng-href="#/nuevo">Nuevo</a>
