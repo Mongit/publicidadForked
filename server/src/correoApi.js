@@ -9,8 +9,8 @@ var CorreoApi = (function() {
         var transporter = that.nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: req.body.from,
-                pass: req.body.pass
+                user: process.env.EMAIL_USER || req.body.from,
+                pass: process.env.EMAIL_PASS || req.body.pass
             }
         });    
         transporter.sendMail({

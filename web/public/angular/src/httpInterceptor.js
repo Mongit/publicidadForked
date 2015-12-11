@@ -8,7 +8,7 @@
         //var re = //;
         
         
-        var freeAccesPages = ['/', '/signin', '/signup', '/todosPublica'];
+        var freeAccesPages = ['/', '/signin', '/signup', '/todosPublica', '/about', '/contact'];
         
         return {
             

@@ -5,10 +5,10 @@
         <link rel='stylesheet' href='/stylesheets/style.css' />    
     </head>
     <body>
-        
-        <div ng-view>
+        <div class="container" ng-controller="AppController as appCtrl">
+            <% include header %>
+            <div ng-view></div>
         </div>
-        
         <% include scripts %>
     </body>
 </html>

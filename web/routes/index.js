@@ -5,10 +5,7 @@ var serverInfo = { server: process.env.SERVER || 'http://localhost:3000' };
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-      title: "Empresas Uruapan",
-      serverInfo: serverInfo
-  });
+    res.render('index', { title: 'Tienditas', serverInfo: serverInfo });
 });
 
 module.exports = router;
